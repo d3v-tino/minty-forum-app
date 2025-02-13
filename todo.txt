@@ -1,0 +1,3 @@
+# set up tests
+# setup ESLint (still need to ignore some files)
+# logout?

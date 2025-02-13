@@ -7,5 +7,6 @@
     "esModuleInterop": true,
     "target": "ES6",
     "module": "CommonJS"
-  }
+  },
+  "exclude": ["**/*.spec.ts"]
 }
