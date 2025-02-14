@@ -1,10 +1,9 @@
-import { app } from "../app";
-import request from "supertest";
-import dotenv from "dotenv";
-import supabase from "../config/supabase";
-import {response} from "express";
 import { describe, expect, test, beforeAll, afterAll } from '@jest/globals';
+import supabase from "../config/supabase";
 import bcrypt from "bcryptjs";
+import {app} from "../app";
+import dotenv from "dotenv";
+import request from "supertest";
 
 dotenv.config({ path: ".env.test" });
 
@@ -19,18 +18,38 @@ describe("Tests for endpoints at /auth", () => {
     }
 
     beforeAll(async () => {
-        const hashedPassword = await bcrypt.hash(testUser.password, 10)
+        console.log("Cleaning up existing test users...");
 
-        await supabase.from("users").insert([
-            { email: testUser.email,
+        await supabase.from("users").delete().eq("email", testUser.email); // Ensure no duplicates
+
+        const hashedPassword = await bcrypt.hash(testUser.password, 10);
+
+        const { error } = await supabase.from("users").insert([
+            {
+                email: testUser.email,
                 username: testUser.username,
-                password_hash: hashedPassword }
+                password_hash: hashedPassword,
+            },
         ]);
+
+        if (error) {
+            console.error("Error inserting test user:", error);
+            throw new Error("Failed to insert test user");
+        }
+
+        console.log("Test user created successfully.");
     });
 
     afterAll(async () => {
-        await supabase.from("users").delete().gt("created_at", "1900-01-01");
-        app.listen().close();
+        console.log("Cleaning up test users...");
+
+        const { error } = await supabase.from("users").delete().eq("email", testUser.email);
+
+        if (error) {
+            console.error("Error deleting test users:", error);
+        } else {
+            console.log("Test users deleted.");
+        }
     });
 
     test("Test user registration at /register", async () => {
@@ -70,11 +89,11 @@ describe("Tests for endpoints at /auth", () => {
         const response = await request(app)
             .post(`${apiEndpoint}/auth/login`)
             .send({
-                email: "not user",
+                email: "notuser@mail.com",
                 password: "n12312412",
             });
 
         expect(response.statusCode).toBe(400);
-    })
+    });
 
-})
+});

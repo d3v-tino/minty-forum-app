@@ -43,33 +43,50 @@ export const registerUser = async (req: any, res: any) => {
 };
 
 export const loginUser = async (req: any, res: any) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-
     try {
+        // Retrieve email and password from request body
         const { email, password } = req.body;
 
-        const user = await findUserByColumn("email", email);
-        if (!user) {
+        // Check if user with email exists
+        const { data, error } = await supabase
+            .from("users")
+            .select("id, email, password_hash") // Select only necessary fields
+            .eq("email", email)
+            .maybeSingle();
+
+        if (error) {
+            console.error("Database error:", error);
+            return res.status(500).json({ error: "Database error" });
+        }
+
+        // If no user is found, return an error
+        if (!data) {
             return res.status(400).json({ error: "Invalid email or password" });
         }
 
-        const isMatch = await bcrypt.compare(password, user?.password_hash);
+        // Validate password
+        const isMatch = await bcrypt.compare(password, data.password_hash);
         if (!isMatch) {
             return res.status(400).json({ error: "Invalid email or password" });
         }
 
-        const token = jwt.sign({ user_id: user.id, email: user.email }, process.env.JWT_SECRET as string, { expiresIn: "1h" });
+        // Generate JWT token
+        const token = jwt.sign(
+            { user_id: data.id, email: data.email },
+            process.env.JWT_SECRET as string,
+            { expiresIn: "1h" }
+        );
 
-        const { password_hash, ...safeUser } = user;
+        // Remove password before sending response
+        const { password_hash, ...safeUser } = data;
 
         console.log("200 - User logged in");
         res.status(200).json({ token, user: safeUser });
 
     } catch (e) {
-        console.error("Login failed with error", e);
-        return res.status(400).json({ error: e });
+        console.error("Login failed with error:", e);
+        return res.status(500).json({ error: e || "Internal Server Error" });
     }
 };
+
+

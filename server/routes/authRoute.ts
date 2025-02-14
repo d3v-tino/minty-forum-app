@@ -15,8 +15,7 @@ authRouter.post("/register",
 
 authRouter.post("/login",
     [
-        body("email").notEmpty().withMessage("Email is required"),
-        body("password").notEmpty().withMessage("Password is required"),
+        //add credential checks
     ],
     async (req: any, res: any) => { await loginUser(req, res);
 })
