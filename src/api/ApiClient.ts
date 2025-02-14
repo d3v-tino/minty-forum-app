@@ -22,7 +22,6 @@ export class ApiClient {
 
             return response;
 
-
         } catch (e) {
             console.error("API request failed", e);
             return null;
