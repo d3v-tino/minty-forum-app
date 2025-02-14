@@ -4,7 +4,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest --detectOpenHandles",
+    "test": "npx jest --detectOpenHandles --verbose=false --silent",
     "dev": "ts-node app.ts"
   },
   "keywords": [],

@@ -43,11 +43,11 @@ export const getPosts = async (req: any, res: any) => {
         }
 
         console.log("200 - Retrieved posts successfully");
-        res.status(200).json({ message: "200 - Posts retrieved", posts: data });
+        return res.status(200).json({ message: "200 - Posts retrieved", posts: data });
 
     } catch (e) {
         console.error("Server error:", e);
-        res.status(500).json({ error: "Internal server error" });
+        return res.status(500).json({ error: "Internal server error" });
     }
 };
 
@@ -74,10 +74,10 @@ export const getCommentsByPost = async (req: any, res: any) => {
         }
 
         console.log("200 - Retrieved comments successfully");
-        res.status(200).json({ message: "200 - Comments retrieved", data: data });
+        return res.status(200).json({ message: "200 - Comments retrieved", data: data });
 
     } catch (e) {
         console.error("Server error:", e);
-        res.status(500).json({ error: "Internal server error" });
+        return res.status(500).json({ error: "Internal server error" });
     }
 };

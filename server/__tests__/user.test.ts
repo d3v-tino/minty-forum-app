@@ -7,22 +7,26 @@ import { findUserByColumn} from "../services/userService";
 
 const apiEndpoint = "/api/v1";
 
+export const testUser = {
+    email: "test123@test.com",
+    username: "test123",
+    password: "test123123",
+}
+
 describe("Tests for /users", () => {
 
-    const testUser = {
-        email: "test123@test.com",
-        username: "test123",
-        password: "test123123",
-    }
-
     beforeEach(async () => {
-        const hashedPassword = await bcrypt.hash(testUser.password, 10)
+        const hashedPassword = await bcrypt.hash(testUser.password, 10);
 
         await supabase.from("users").insert([{
             email: testUser.email,
             username: testUser.username,
             password_hash: hashedPassword }
         ]);
+    });
+
+    afterAll(async () => {
+        await supabase.from("users").delete().gt("created_at", "1900-01-01");
     });
 
     test("Test get current user", async () => {
