@@ -1,7 +1,7 @@
 import React from "react";
-import {AppBar, Box, Button, Link, Toolbar, Typography} from "@mui/material";
-import {useNavigate} from "react-router-dom";
-import {useAuth} from "../context/AuthContext";
+import { AppBar, Box, Button, Link, Toolbar, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export const Navbar = () => {
     const navigate = useNavigate();
@@ -31,4 +31,4 @@ export const Navbar = () => {
             </Toolbar>
         </AppBar>
     );
-}
+};

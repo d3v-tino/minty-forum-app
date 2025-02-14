@@ -1,13 +1,14 @@
 import supabase from "../config/supabase";
 import bcrypt from "bcryptjs";
 import { validationResult } from "express-validator";
-import {findUserByColumn} from "../services/userService";
+import { findUserByColumn } from "../services/userService";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { Request, Response } from "express";
 
 dotenv.config();
 
-export const registerUser = async (req: any, res: any) => {
+export const registerUser = async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -42,7 +43,7 @@ export const registerUser = async (req: any, res: any) => {
     }
 };
 
-export const loginUser = async (req: any, res: any) => {
+export const loginUser = async (req: Request, res: Response) => {
     try {
         // Retrieve email and password from request body
         const { email, password } = req.body;
@@ -77,7 +78,7 @@ export const loginUser = async (req: any, res: any) => {
             { expiresIn: "1h" }
         );
 
-        // Remove password before sending response
+        // eslint-disable-next-line
         const { password_hash, ...safeUser } = data;
 
         console.log("200 - User logged in");

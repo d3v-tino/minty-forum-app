@@ -1,7 +1,8 @@
-import {findUserByColumn} from "../services/userService";
+import { findUserByColumn } from "../services/userService";
+import { Request, Response } from "express";
 
 
-export const getCurrentUser = async (req: any, res: any) => {
+export const getCurrentUser = async (req: Request, res: Response) => {
     try {
        const { id } = req.params;
         if (!id) return res.status(400).json({
@@ -16,6 +17,7 @@ export const getCurrentUser = async (req: any, res: any) => {
         return res.status(200).json(user);
 
     } catch (e) {
+        console.error(e);
         return res.status(500).json({ error: "Internal server error" });
     }
 };

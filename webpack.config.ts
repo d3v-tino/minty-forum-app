@@ -1,7 +1,6 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
-const path = require('path');
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import * as path from "node:path";
 
 module.exports = {
   mode: "development",

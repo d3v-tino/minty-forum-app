@@ -1,5 +1,5 @@
 import React from "react";
-import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useCallback, useContext, useState } from "react";
 import { User } from "../models/User";
 
 interface AuthContextProps {
@@ -7,7 +7,7 @@ interface AuthContextProps {
     isLoggedIn: boolean;
     token: string | null;
     user: User | null;
-    // eslint-disable-next-line no-unused-vars
+     
     login: (responseToken: string) => void;
     logout: () => void;
 }

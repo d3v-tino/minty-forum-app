@@ -1,5 +1,5 @@
 import supabase from "../config/supabase";
-import {User} from "../models/User";
+import { User } from "../models/User";
 
 export const findUserByColumn = async (column: string, value: string): Promise<User | null> => {
     const { data, error } = await supabase

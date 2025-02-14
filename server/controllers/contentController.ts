@@ -1,6 +1,7 @@
 import supabase from "../config/supabase";
+import { Request, Response } from "express";
 
-export const createContent = async (req: any, res: any) => {
+export const createContent = async (req: Request, res: Response) => {
 
     try {
         const { body } = req.body;
@@ -16,15 +17,15 @@ export const createContent = async (req: any, res: any) => {
         }
 
         console.log("201 - Content posted successfully");
-        res.status(201).json({ message: "201 - Contents posted", content: data })
+        res.status(201).json({ message: "201 - Contents posted", content: data });
 
     } catch (e) {
         console.error("Server error:", e);
         res.status(500).json({ error: "Internal server error" });
     }
-}
+};
 
-export const getPosts = async (req: any, res: any) => {
+export const getPosts = async (req: Request, res: Response) => {
     try {
         const { data, error } = await supabase
             .from("content")
@@ -51,7 +52,7 @@ export const getPosts = async (req: any, res: any) => {
     }
 };
 
-export const getCommentsByPost = async (req: any, res: any) => {
+export const getCommentsByPost = async (req: Request, res: Response) => {
     const { postId } = req.params;
     if (!postId) return res.status(400).json({
         error: "postId is required",
@@ -66,7 +67,7 @@ export const getCommentsByPost = async (req: any, res: any) => {
                 created_at,
                 author:users (id, username)
             `)
-            .is("title", null)
+            .is("title", null);
 
         if (error) {
             console.error("Supabase error:", error.message);

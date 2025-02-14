@@ -5,7 +5,7 @@ export class ApiClient {
         this.baseUrl = baseUrl;
     };
 
-    private async request(endpoint: string, method: "GET" | "POST", data?: any, additionalHeaders?: Record<string,string>) {
+    private async request(endpoint: string, method: "GET" | "POST", data?: Record<string, string>, additionalHeaders?: Record<string,string>) {
         try {
             const response = await fetch(`${this.baseUrl}/${endpoint}`, {
                 method,
@@ -29,7 +29,7 @@ export class ApiClient {
         }
     }
 
-    public async post(endpoint: string, data: any, additionalHeaders?: Record<string, string>) {
+    public async post(endpoint: string, data: Record<string, string>, additionalHeaders?: Record<string, string>) {
         return this.request(endpoint, "POST", data, additionalHeaders);
     }
 

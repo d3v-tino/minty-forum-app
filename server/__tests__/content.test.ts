@@ -2,10 +2,9 @@ import { app } from "../app";
 import request from "supertest";
 import dotenv from "dotenv";
 import supabase from "../config/supabase";
-import {response} from "express";
 import { describe, expect, test, beforeAll, afterAll } from '@jest/globals';
 import bcrypt from "bcryptjs";
-import {findContentByColumn} from "../services/contentService";
+import { findContentByColumn } from "../services/contentService";
 
 dotenv.config({ path: ".env.test" });
 
@@ -16,15 +15,15 @@ describe("Tests for endpoints at /auth", () => {
     const testComment = {
         body: "test comment",
         parent_id: null,
-    }
+    };
 
     const testPost = {
         title: "test post",
         body: "test post content",
-    }
+    };
 
     beforeAll(async () => {
-        const hashedPassword = await bcrypt.hash("content_secret123", 10)
+        const hashedPassword = await bcrypt.hash("content_secret123", 10);
 
         const { data: user, error: userError } = await supabase
             .from("users")
@@ -85,7 +84,7 @@ describe("Tests for endpoints at /auth", () => {
 
     test("test get comments", async () => {
         const response = await request(app)
-            .get(`${apiEndpoint}/content/comments/${testComment.parent_id}`)
+            .get(`${apiEndpoint}/content/comments/${testComment.parent_id}`);
 
         expect(response.status).toBe(200);
     });
@@ -100,4 +99,4 @@ describe("Tests for endpoints at /auth", () => {
         expect(response.status).toBe(201);
     });
 
-})
+});

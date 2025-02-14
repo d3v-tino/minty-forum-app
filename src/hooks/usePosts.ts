@@ -1,6 +1,6 @@
-import {useEffect, useState} from "react";
-import {Content} from "../models/Content";
-import {getallposts} from "../api/models/post";
+import { useEffect, useState } from "react";
+import { Content } from "../models/Content";
+import { getallposts } from "../api/models/post";
 
 export const usePosts = () => {
     const [posts, setPosts] = useState<Content[]>([]);
@@ -20,7 +20,7 @@ export const usePosts = () => {
 
     useEffect(() => {
         loadPosts();
-    }, [])
+    }, []);
 
-    return { posts };
+    return { posts, loading, error };
 };

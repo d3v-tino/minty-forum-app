@@ -1,6 +1,6 @@
-import {useEffect, useState} from "react";
-import {Content} from "../models/Content";
-import {getCommentsByPost} from "../api/models/comments";
+import { useEffect, useState } from "react";
+import { Content } from "../models/Content";
+import { getCommentsByPost } from "../api/models/comments";
 
 export const useComments = (postId: string) => {
     const [comments, setComments] = useState<Content[]>([]);
@@ -21,7 +21,7 @@ export const useComments = (postId: string) => {
 
     useEffect(() => {
         loadComments();
-    }, [postId])
+    }, [postId]);
 
-    return { comments };
+    return { comments, loading, error };
 };

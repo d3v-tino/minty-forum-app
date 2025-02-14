@@ -1,8 +1,7 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
-import {usePosts} from "../hooks/usePosts";
+import { usePosts } from "../hooks/usePosts";
 import { Card, CardContent, Container, Link, Stack, Typography } from "@mui/material";
-import {CommentSection} from "../components/CommentSection";
+import { CommentSection } from "../components/CommentSection";
 
 export const Post = () => {
     const { posts } = usePosts();

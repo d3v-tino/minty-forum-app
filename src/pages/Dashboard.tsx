@@ -1,9 +1,7 @@
 import React from "react";
-import {Box, Stack, Typography, Card, CardContent, Link} from "@mui/material";
+import { Box, Stack, Typography, Card, CardContent, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import {usePosts} from "../hooks/usePosts";
-
-const MAX_LENGTH = 150;
+import { usePosts } from "../hooks/usePosts";
 
 export const Dashboard = () => {
     const { posts } = usePosts();

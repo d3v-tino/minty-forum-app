@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Paper, Stack, TextField, Typography } from "@mui/material";
-import {useComments} from "../hooks/useComments";
+import {  Paper, Stack, Typography } from "@mui/material";
+import { useComments } from "../hooks/useComments";
 
 export const CommentSection = () => {
     const { comments } = useComments("0437ee93-1dec-4881-a061-dab8fdb882cb");
@@ -19,5 +19,5 @@ export const CommentSection = () => {
             )}
         </Stack>
 
-    )
+    );
 };

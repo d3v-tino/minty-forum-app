@@ -1,5 +1,5 @@
 import supabase from "../config/supabase";
-import {Content} from "../models/Content";
+import { Content } from "../models/Content";
 
 export const findContentByColumn = async (column: string, value: string): Promise<Content | null> => {
     const { data, error } = await supabase

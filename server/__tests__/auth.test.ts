@@ -1,7 +1,7 @@
 import { describe, expect, test, beforeAll, afterAll } from '@jest/globals';
 import supabase from "../config/supabase";
 import bcrypt from "bcryptjs";
-import {app} from "../app";
+import { app } from "../app";
 import dotenv from "dotenv";
 import request from "supertest";
 
@@ -15,7 +15,7 @@ describe("Tests for endpoints at /auth", () => {
         email: "test123@test.com",
         username: "test123",
         password: "test123123",
-    }
+    };
 
     beforeAll(async () => {
         console.log("Cleaning up existing test users...");

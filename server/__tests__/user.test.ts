@@ -1,9 +1,9 @@
 import request from "supertest";
-import {app} from "../app";
+import { app } from "../app";
 import bcrypt from "bcryptjs";
 import supabase from "../config/supabase";
-import { findUserByColumn} from "../services/userService";
-import {beforeAll} from "@jest/globals";
+import { findUserByColumn } from "../services/userService";
+import { beforeAll } from "@jest/globals";
 
 const apiEndpoint = "/api/v1";
 
@@ -11,7 +11,7 @@ const testUser = {
     email: "authTestUser@test.com",
     username: "authTestUser",
     password: "test123123",
-}
+};
 
 describe("Tests for /users", () => {
 
