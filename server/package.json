@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest --silent --detectOpenHandles",
+    "test": "npx jest --detectOpenHandles",
     "dev": "ts-node app.ts"
   },
   "keywords": [],

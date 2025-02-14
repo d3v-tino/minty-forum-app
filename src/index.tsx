@@ -6,6 +6,7 @@ import {Register} from "./pages/Register";
 import {Dashboard} from "./pages/Dashboard";
 import {Navbar} from "./components/Navbar";
 import {AuthProvider} from "./context/AuthContext";
+import {Post} from "./pages/Post";
 
 const App: React.FC = () => {
     return(
@@ -16,6 +17,7 @@ const App: React.FC = () => {
                     <Route path="/" element={<Dashboard/>} />
                     <Route path="/login" element={<Login/>} />
                     <Route path="/register" element={<Register/>} />
+                    <Route path="/post" element={<Post/>} />
                 </Routes>
             </Router>
         </AuthProvider>
