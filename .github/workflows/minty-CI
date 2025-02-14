@@ -1,0 +1,29 @@
+name: Minty
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main  # Runs checks on PRs to main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Gets your latest code
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # Change to your Node version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm run tests
+
+      - name: Check ESLint
+        run: npm run lint
