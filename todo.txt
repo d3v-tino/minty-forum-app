@@ -2,3 +2,5 @@
 # setup ESLint (still need to ignore some files)
 # logout?
 # branches
+# for meget logging i tests
+# fix test so alt bliver sat op 1 gang
