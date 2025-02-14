@@ -1,9 +1,9 @@
 import request from "supertest";
 import {app} from "../app";
-import {beforeEach} from "@jest/globals";
 import bcrypt from "bcryptjs";
 import supabase from "../config/supabase";
 import { findUserByColumn} from "../services/userService";
+import {beforeAll} from "@jest/globals";
 
 const apiEndpoint = "/api/v1";
 
@@ -15,7 +15,7 @@ const testUser = {
 
 describe("Tests for /users", () => {
 
-    beforeEach(async () => {
+    beforeAll(async () => {
         const hashedPassword = await bcrypt.hash(testUser.password, 10);
 
         await supabase.from("users").insert([{

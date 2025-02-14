@@ -3,7 +3,7 @@ import request from "supertest";
 import dotenv from "dotenv";
 import supabase from "../config/supabase";
 import {response} from "express";
-import { describe, expect, test, beforeEach, afterAll } from '@jest/globals';
+import { describe, expect, test, beforeAll, afterAll } from '@jest/globals';
 import bcrypt from "bcryptjs";
 
 dotenv.config({ path: ".env.test" });
@@ -18,7 +18,7 @@ describe("Tests for endpoints at /auth", () => {
         password: "test123123",
     }
 
-    beforeEach(async () => {
+    beforeAll(async () => {
         const hashedPassword = await bcrypt.hash(testUser.password, 10)
 
         await supabase.from("users").insert([
