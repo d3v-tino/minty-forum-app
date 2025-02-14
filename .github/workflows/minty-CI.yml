@@ -24,6 +24,7 @@ jobs:
 
       - name: Run Tests
         run: npm run test
+        working-directory: ./server
 
       - name: Check ESLint
         run: npm run lint
