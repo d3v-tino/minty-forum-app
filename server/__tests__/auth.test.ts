@@ -53,7 +53,6 @@ describe("Tests for endpoints at /auth", () => {
                 password: testUser.password,
             });
 
-        console.log(response.body);
         expect(response.statusCode).toBe(200);
     });
 

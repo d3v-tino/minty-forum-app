@@ -7,9 +7,9 @@ import { findUserByColumn} from "../services/userService";
 
 const apiEndpoint = "/api/v1";
 
-export const testUser = {
-    email: "test123@test.com",
-    username: "test123",
+const testUser = {
+    email: "authTestUser@test.com",
+    username: "authTestUser",
     password: "test123123",
 }
 
